@@ -69,6 +69,13 @@ form label{
 
 }
 
+.Nav h1{
+    color: white;
+    font-size: 20px;
+    float: left;
+    margin-left: 600px;
+}
+
 .Nav form{
     margin: 0px 20px ;
     padding: 5px;
@@ -110,6 +117,21 @@ form label{
 
 }
 
+input[type="file"] {
+    display: none;
+}
+
+.file-upload {
+    margin-top: 5px;
+    /*border: 1px solid #ccc;*/
+    display: inline-block;
+    padding: 6px 0px;
+    cursor: pointer;
+    background: crimson;
+    font-size: 20px;
+    color: white;
+}
+
 .Display{
     width: 100%;
     margin: auto;
@@ -133,14 +155,18 @@ form label{
 }
 
 #boxes .box img{
-    width: 350px;
-    height: 190px;
+    width: 300px;
+    height: 220px;
 }
 
 .box form input[type="submit"]{
     margin-left: 50px;
 }
+.box .ImgBtn{
+    background: transparent;
+    border: 0px;
 
+}
 .TableBtn{
     height: 30px;
     background: #e8491d;
@@ -169,6 +195,51 @@ form label{
     font-size: 25px;
     margin: 5px;
 
+}
+
+.Details{
+    width: 100%;
+    background-color: antiquewhite;
+    float: left;
+}
+.ImageSection{
+    width: 40%;
+}
+
+.Details img{
+    width: 400px;
+    height: 280px;
+    float: left;
+}
+.Details .DetailsBtn{
+    height: 30px;
+    background: #e8491d;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #f4f4f4;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-left: 400px;
+
+
+}
+.Details .DetailsBtn2{
+    height: 30px;
+    background: #e8491d;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #f4f4f4;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-left: 10px;
+
+
+}
+.Details label{
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 400px;
+    color: black;
 }
 
 footer{

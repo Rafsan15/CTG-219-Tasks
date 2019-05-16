@@ -13,12 +13,13 @@ class MobileService implements IMobileService
     function InsertRow($model)
     {
         try{
-            $statement= $this->conn->prepare("INSERT INTO mobiles (Name,Model,Price) VALUES (:name,:model,:price)");
+            $statement= $this->conn->prepare("INSERT INTO mobiles (Name,Model,Price,Images) VALUES (:name,:model,:price,:image)");
             $statement->execute(
                 array(
                     ':name'=> $model->GetName(),
                     ':model'=>$model->GetModel(),
-                    ':price'=>$model->GetPrice()
+                    ':price'=>$model->GetPrice(),
+                    ':image'=>$model->GetImages()
                 )
             );
 
@@ -31,12 +32,14 @@ class MobileService implements IMobileService
     function UpdateRow($model)
     {
         try{
-            $statement= $this->conn->prepare("UPDATE mobiles SET name=:name , model=:model, price=:price where id=:id");
+
+            $statement= $this->conn->prepare("UPDATE mobiles SET name=:name , model=:model, price=:price , images=:image where id=:id");
             $statement->execute(
                 array(
                     ':name'=> $model->GetName(),
                     ':model'=>$model->GetModel(),
                     ':price'=>$model->GetPrice(),
+                    ':image'=>$model->GetImages(),
                     ':id'=>$model->GetId()
                 )
             );
