@@ -1,8 +1,40 @@
 <html>
-<head>
+    <head>
     <title>MOBO HUB</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function validateForm() {
+            var name = document.forms["InsertForm"]["Name"].value;
+            var model = document.forms["InsertForm"]["Model"].value;
+            var price = document.forms["InsertForm"]["Price"].value;
+            if (name == "") {
+                document.getElementById("NameSpan").innerHTML="Name must be filled out";
+                return false;
+            }
+            else {
+                document.getElementById("NameSpan").innerHTML="";
+
+            }
+            if (model == "") {
+                document.getElementById("ModelSpan").innerHTML="Model must be filled out";
+                return false;
+            }
+            else {
+                document.getElementById("ModelSpan").innerHTML="";
+
+            }
+            if (price =="") {
+                document.getElementById("PriceSpan").innerHTML="Price must be filled out";
+                return false;
+            }
+            else {
+                document.getElementById("PriceSpan").innerHTML="";
+
+            }
+        }
+    </script>
 </head>
-<body>
+    <body>
 <?php
 
 
@@ -12,46 +44,49 @@ class MyForm
     }
 
     private function NavBar(){?>
-        <form action="index.php" method="post">
-            <input type="submit" name="AddBtn" value="Add" >
-        </form>
-        <form action="List.php" method="post">
-            <input type="submit" name="ListBtn" value="List">
-        </form>
+        <div class="Nav">
+            <form action="List.php" method="post">
+                <input type="submit" name="ListBtn" value="List">
+            </form>
+            <form action="index.php" method="post">
+                <input type="submit" name="AddBtn" value="Add" >
+            </form>
+
+        </div>
+
         <?php
     }
 
     private function SearchBox(){ ?>
-        <form action="Display.php" method="post">
-            <label>Search:</label><label>
-                <input type="text" name="Search">
-            </label>
-            <input type="submit" name="SearchBtn" value="Click Here">
-        </form>
-
+        <div class="Search">
+            <form action="Display.php" method="post">
+                    <input type="number" name="Search" placeholder="Search By Price">
+                <input type="submit" name="SearchBtn" class="SearchBtn" value="Click Here">
+            </form>
+        </div>
         <?php
-
     }
 
     public function InsertForm(){
         $this->NavBar();
 
         ?>
+                <div class="Insert">
+                    <h1>Please Insert Mobile Details</h1>
+                    <form name="InsertForm" action="List.php" onsubmit="return validateForm()"  method="post">
+                        <input type="text" name="Name" placeholder="Name"><br>
+                        <span id="NameSpan" style="color: #e8491d"></span>
+                        <input type="text" name="Model" placeholder="Model"><br>
+                        <span id="ModelSpan" style="color: #e8491d"></span>
+                        <input type="number" name="Price" placeholder="Price"><br>
+                        <span id="PriceSpan" style="color: #e8491d"></span>
+<!--                        <input type='file' name= 'image'>-->
+                        <input type="submit" name="Submit" class="Btn" value="Submit">
+                    </form>
+                </div>
 
-                <form action="List.php" method="post">
-                   <label>Name:</label> <label>
-                        <input type="text" name="Name">
-                    </label><br>
-                   <label>Model:</label> <label>
-                        <input type="text" name="Model">
-                    </label><br>
-                   <label>Price:</label> <input type="text" name="Price"><br>
-                    <input type="submit" name="Submit" class="SubmitBtn" value="Submit">
-                </form>
-
-
-<?php
-
+            <?php
+             $this->Footer();
     }
 
     public function ShowAllData($data)
@@ -59,34 +94,31 @@ class MyForm
         $this->NavBar();
         $this->SearchBox();
         ?>
-            <table border="1">
-                <th>Name</th>
-                <th>Model</th>
-                <th>Price</th>
-                <th>Edit</th>
-                <th>Delete</th>
-                <?php foreach ($data as $d){?>
-                    <tr>
-                        <td><?php echo $d['Name'] ?></td>
-                        <td><?php echo $d['Model']; ?></td>
-                        <td><?php echo $d['Price']; ?></td>
-                        <td>
-                            <form action="Edit.php" method="post">
-                                <input type="hidden" name="Id" value="<?php echo $d['Id'] ?>">
-                                <input type="submit" name="Edit" value="Edit">
-                            </form>
-                        </td>
-                        <td>
-                            <form action="Delete.php" method="post">
-                                <input type="hidden" name="Id" value="<?php echo $d['Id'] ?>">
-                                <input type="submit" name="Delete" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
+        <div class="Display">
+            <?php foreach ($data as $d){?>
+                <section id="boxes">
+                    <div class="box">
+                        <h4>Name :<?php echo $d['Name'] ?> </h4>
+                        <h4>Model :<?php echo $d['Model'] ?> </h4>
+                        <h4>Price :<?php echo $d['Price'] ?> </h4>
+                        <form action="Edit.php" method="post">
+                            <input type="hidden" name="Id" value="<?php echo $d['Id'] ?>">
+                            <input type="submit" name="Edit" class="TableBtn" value="Edit">
+                        </form>
+                        <form action="Delete.php" method="post">
+                            <input type="hidden" name="Id"  value="<?php echo $d['Id'] ?>">
+                            <input type="submit" name="Delete" class="TableBtn" value="Delete">
+                        </form>
+                    </div>
+                </section>
+
                 <?php  }?>
-            </table>
+
+        </div>
+
 
         <?php
+        $this->Footer();
     }
 
     public function ShowDataByPrice($data){
@@ -113,21 +145,35 @@ class MyForm
     public function UpdateForm($model){
         $this->NavBar();
         ?>
-
-        <form action="Edit.php" method="post">
-            <input type="hidden" name="Id" value="<?php echo $model['Id'] ?>">
-            <label>Name:</label> <input type="text" name="Name" value="<?php echo $model['Name'] ?>"><br>
-            <label>Model:</label> <input type="text" name="Model" value="<?php echo $model['Model'] ?>"><br>
-            <label>Price:</label> <input type="text" name="Price" value="<?php echo $model['Price'] ?>"><br>
-            <input type="submit" name="Update" class="SubmitBtn" value="Update">
-        </form>
-
+        <div class="Insert">
+            <h1>Please Update Mobile Details</h1>
+            <form name="InsertForm" action="Edit.php" onsubmit="return validateForm()"  method="post">
+                <input type="hidden" name="Id" value="<?php echo $model['Id'] ?>">
+                <input type="text" name="Name" placeholder="Name" value="<?php echo $model['Name'] ?>"><br>
+                <span id="NameSpan" style="color: #e8491d"></span>
+                <input type="text" name="Model" placeholder="Model" value="<?php echo $model['Model'] ?>"><br>
+                <span id="ModelSpan" style="color: #e8491d"></span>
+                <input type="number" name="Price" placeholder="Price" value="<?php echo $model['Price'] ?>"><br>
+                <span id="PriceSpan" style="color: #e8491d"></span>
+                <input type="submit" name="Update" class="Btn" value="Update">
+            </form>
+        </div>
 
         <?php
+        $this->Footer();
+    }
+
+    private function Footer(){
+        ?>
+        <footer>
+            <h1>Thank you for your time.</h1>
+        </footer>
+
+<?php
     }
 
 
 }
 ?>
-            </body>
-        </html>
+    </body>
+</html>

@@ -8,9 +8,16 @@ $conn= new Connection();
 $mobileService= new MobileService($conn->GetConnection());
 if(isset($_POST['SearchBtn'])){
     $price=$_POST['Search'];
-    $data=$mobileService->GetByPrice($price);
-    $form->ShowAllData($data);
+    if($price<=0){
+        header("Location: List.php");
+    }
+    else{
+        $data=$mobileService->GetByPrice($price);
+        $form->ShowAllData($data);
+    }
+
+
 }
 else{
-
+    header("Location: List.php");
 }

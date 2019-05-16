@@ -1,0 +1,180 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: #f4f4f4;
+
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+form{
+    float: left;
+    margin-top: 0px;
+}
+
+.Btn{
+    height: 38px;
+    background: #e8491d;
+    border: 0;
+    padding-left: 95px;
+    padding-right: 95px;
+    color: #f4f4f4;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+form input[type="text"],input[type="number"]{
+    padding: 15px;
+    height: 25px;
+    width: 250px;
+    margin-top: 5px;
+    border-bottom-color: black;
+    border-top-color: black;
+    border-left-color: #721c24;
+    border-right-color: #721c24;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+form label{
+    padding: 4px;
+    height: 25px;
+    width: 250px;
+    border-bottom-color: black;
+    border-top-color: black;
+    border-left-color: #721c24;
+    border-right-color: #721c24;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.Nav{
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    background-color: darkcyan;
+
+}
+
+.Nav form{
+    margin: 0px 20px ;
+    padding: 5px;
+    float: right;
+}
+
+.Nav form input[type="submit"]{
+    height: 38px;
+    background: transparent;
+    border: 1px;
+    border-bottom-color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #f4f4f4;
+    font-size: 20px;
+}
+
+.Nav form input[type="submit"]:hover{
+    font-size: 30px;
+}
+
+.Insert{
+    width: 40%;
+    margin: 150px 500px;
+    overflow: hidden;
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+.Insert h1{
+    font-size: 28px;
+
+}
+
+.Insert form{
+    margin: 10px 160px;
+    padding: 20px;
+
+
+}
+
+.Display{
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    /*background-color: antiquewhite;*/
+}
+
+#boxes{
+    margin-top: 10px;
+    margin-left: 35px;
+    width: 30%;
+    background: antiquewhite;
+    float: left;
+    border: black solid 1px;
+}
+
+#boxes .box{
+    text-align: center;
+    padding: 50px;
+
+}
+
+#boxes .box img{
+    width: 350px;
+    height: 190px;
+}
+
+.box form input[type="submit"]{
+    margin-left: 50px;
+}
+
+.TableBtn{
+    height: 30px;
+    background: #e8491d;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #f4f4f4;
+    border-radius: 5px;
+    font-size: 20px;
+    margin: auto;
+
+}
+
+.Search{
+    width: 30%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.SearchBtn{
+    height: 38px;
+    background: #e8491d;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #f4f4f4;
+    border-radius: 15px;
+    font-size: 25px;
+    margin: 5px;
+
+}
+
+footer{
+    padding: 10px;
+    margin-top: 5px;
+    color: #ffffff;
+    background-color: #35424a;
+    text-align: center;
+}
