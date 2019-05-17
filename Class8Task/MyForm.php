@@ -53,6 +53,50 @@
                     return false;
                 }
             }
+            function CalcRatings(rate) {
+                document.forms["RatingsForm"]["TotalRatings"].value=rate;
+                if(rate=='1')
+                {
+                    document.forms["RatingsForm"]["rating_1"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_2"].src='images/star.jpg';
+                    document.forms["RatingsForm"]["rating_3"].src='images/star.jpg';
+                    document.forms["RatingsForm"]["rating_4"].src='images/star.jpg';
+                    document.forms["RatingsForm"]["rating_5"].src='images/star.jpg';
+
+                }
+                if(rate=='2')
+                {
+                    document.forms["RatingsForm"]["rating_1"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_2"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_3"].src='images/star.jpg';
+                    document.forms["RatingsForm"]["rating_4"].src='images/star.jpg';
+                    document.forms["RatingsForm"]["rating_5"].src='images/star.jpg';
+                }
+                if(rate=='3')
+                {
+                    document.forms["RatingsForm"]["rating_1"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_2"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_3"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_4"].src='images/star.jpg';
+                    document.forms["RatingsForm"]["rating_5"].src='images/star.jpg';
+                }
+                if(rate=='4')
+                {
+                    document.forms["RatingsForm"]["rating_1"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_2"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_3"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_4"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_5"].src='images/star.jpg';
+                }
+                if(rate=='5')
+                {
+                    document.forms["RatingsForm"]["rating_1"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_2"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_3"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_4"].src='images/star2.jpg';
+                    document.forms["RatingsForm"]["rating_5"].src='images/star2.jpg';
+                }
+            }
 
         </script>
 
@@ -213,27 +257,75 @@ class MyForm
     public function Details($model){
         $this->NavBar();
         ?>
+
         <div class="Details">
-
+            <aside id="ImageSection">
                 <img src="<?php echo "images/".$model['Images'] ?>">
+            </aside>
+           <article id="Info">
+               <aside id="detInfo">
+                   <label>Name : <?php echo $model['Name']?></label><br>
+                   <label>Model : <?php echo $model['Model']?></label><br>
+                   <label>Price : <?php echo $model['Price']?></label><br>
+                   <label>Ratings : *****</label><br>
+                   <label>Year : 2019</label><br>
+
+                   <form action="Edit.php" method="post">
+                       <input type="hidden" name="Id" value="<?php echo $model['Id'] ?>">
+                       <input type="submit" name="Edit" class="DetailsBtn" value="Edit">
+                   </form>
+                   <form action="Delete.php" method="post" onsubmit="return Confirmation()" >
+                       <input type="hidden" name="Id"  value="<?php echo $model['Id'] ?>">
+                       <input type="submit" name="Delete" class="DetailsBtn2" value="Delete">
+                   </form>
+               </aside>
 
 
-                <label>Name : <?php echo $model['Name']?></label><br>
-                <label>Model : <?php echo $model['Model']?></label><br>
-                <label>Price : <?php echo $model['Price']?></label><br>
-                <label>Ratings : *****</label><br>
-                <label>Year : 2019</label><br>
-                <form action="Edit.php" method="post">
-                    <input type="hidden" name="Id" value="<?php echo $model['Id'] ?>">
-                    <input type="submit" name="Edit" class="DetailsBtn" value="Edit">
-                </form>
-                <form action="Delete.php" method="post" onsubmit="return Confirmation()" >
-                    <input type="hidden" name="Id"  value="<?php echo $model['Id'] ?>">
-                    <input type="submit" name="Delete" class="DetailsBtn2" value="Delete">
-                </form>
+            <aside id="Ratings">
+                <div>
+                    <form name="RatingsForm" action="Ratings.php" method="post">
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg" onclick="CalcRatings(1)" name="rating_1" >
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(2)" name="rating_2" >
+                        <img style="width: 30px;height: 30px"src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(3)" name="rating_3" >
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(4)" name="rating_4" >
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(5)" name="rating_5" >
 
+                        <input type="hidden" name="TotalRatings" value="">
+                        <input type="email" name="Email" placeholder="Enter Your Email Address"><br>
+                        <input type="text" name="Comment" placeholder="Comment..."><br>
+                        <input type="submit" name="RatingsSubmit" class="DetailsBtn" value="Submit">
+                    </form>
+                </div>
+            </aside>
+           </article>
 
         </div>
+        <?php
+        $this->Comments();
+
+    }
+
+    public function Comments(){
+        ?>
+        <div id="CommentDiv">
+            <section id="Comments">
+                <div class="Comment">
+                    <h1>Hello</h1>
+                </div>
+            </section>
+            <section id="Comments">
+                <div class="Comment">
+                    <h1>Hello</h1>
+                </div>
+            </section>
+            <section id="Comments">
+                <div class="Comment">
+                    <h1>Hello</h1>
+                </div>
+            </section>
+        </div>
+
+
         <?php
         $this->Footer();
     }
