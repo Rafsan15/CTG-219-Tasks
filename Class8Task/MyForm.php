@@ -97,6 +97,41 @@
                     document.forms["RatingsForm"]["rating_5"].src='images/star2.jpg';
                 }
             }
+            function RatingsValidate() {
+                var totalRatings = document.forms["RatingsForm"]["TotalRatings"].value;
+                var comment = document.forms["RatingsForm"]["Comment"].value;
+                var email = document.forms["RatingsForm"]["Email"].value;
+                if (totalRatings == "") {
+                    document.getElementById("RatingSpan").innerHTML="Please Give At Least One Star ";
+                    return false;
+                }
+                else {
+                    document.getElementById("RatingSpan").innerHTML="";
+
+                }
+                if(comment!=""){
+                    if(email==""){
+                        document.getElementById("EmailSpan").innerHTML="Please Enter Your Email Address ";
+                        return false;
+                    }
+                    else {
+                        document.getElementById("EmailSpan").innerHTML="";
+
+                    }
+                }
+
+                if(email!=""){
+                    if(comment==""){
+                        document.getElementById("CommentSpan").innerHTML="Please Enter Your Comment ";
+                        return false;
+                    }
+                    else {
+                        document.getElementById("CommentSpan").innerHTML="";
+
+                    }
+                }
+
+            }
 
         </script>
 
@@ -141,7 +176,7 @@ class MyForm
         ?>
                 <div class="Insert">
                     <h1>Please Insert Mobile Details</h1>
-                    <form name="InsertForm" action="List.php" onsubmit="return validateForm()"  method="post" enctype="multipart/form-data">
+                    <form name="InsertForm" action="List.php" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
                         <input type="text" name="Name" placeholder="Name"><br>
                         <span id="NameSpan" style="color: #e8491d"></span>
                         <input type="text" name="Model" placeholder="Model"><br>
@@ -228,7 +263,7 @@ class MyForm
         ?>
         <div class="Insert">
             <h1>Please Update Mobile Details</h1>
-            <form name="InsertForm" action="Edit.php" onsubmit="return validateForm()"  method="post" enctype="multipart/form-data">
+            <form name="InsertForm" action="Edit.php" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="Id" value="<?php echo $model['Id'] ?>">
                 <input type="text" name="Name" placeholder="Name" value="<?php echo $model['Name'] ?>"><br>
                 <span id="NameSpan" style="color: #e8491d"></span>
@@ -254,7 +289,7 @@ class MyForm
         $this->Footer();
     }
 
-    public function Details($model){
+    public function Details($model, $ratings , $comments){
         $this->NavBar();
         ?>
 
@@ -267,7 +302,7 @@ class MyForm
                    <label>Name : <?php echo $model['Name']?></label><br>
                    <label>Model : <?php echo $model['Model']?></label><br>
                    <label>Price : <?php echo $model['Price']?></label><br>
-                   <label>Ratings : *****</label><br>
+                   <label>Ratings : <?php echo $ratings?></label><br>
                    <label>Year : 2019</label><br>
 
                    <form action="Edit.php" method="post">
@@ -283,16 +318,20 @@ class MyForm
 
             <aside id="Ratings">
                 <div>
-                    <form name="RatingsForm" action="Ratings.php" method="post">
+                    <form name="RatingsForm" action="RatingsWeb.php" method="post" onsubmit="return RatingsValidate()">
                         <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg" onclick="CalcRatings(1)" name="rating_1" >
-                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(2)" name="rating_2" >
-                        <img style="width: 30px;height: 30px"src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(3)" name="rating_3" >
-                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(4)" name="rating_4" >
-                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg"  onclick="CalcRatings(5)" name="rating_5" >
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg" onclick="CalcRatings(2)" name="rating_2" >
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg" onclick="CalcRatings(3)" name="rating_3" >
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg" onclick="CalcRatings(4)" name="rating_4" >
+                        <img style="width: 30px;height: 30px" src="images/star.jpg" class="RatingsImg" onclick="CalcRatings(5)" name="rating_5" >
+                        <br><span id="RatingSpan" style="color: #e8491d"></span>
 
                         <input type="hidden" name="TotalRatings" value="">
+                        <input type="hidden" name="MobileId" value="<?php echo $model['Id'] ?>">
                         <input type="email" name="Email" placeholder="Enter Your Email Address"><br>
+                        <span id="EmailSpan" style="color: #e8491d"></span>
                         <input type="text" name="Comment" placeholder="Comment..."><br>
+                        <span id="CommentSpan" style="color: #e8491d"></span>
                         <input type="submit" name="RatingsSubmit" class="DetailsBtn" value="Submit">
                     </form>
                 </div>
@@ -300,34 +339,22 @@ class MyForm
            </article>
 
         </div>
-        <?php
-        $this->Comments();
+        <div class="Display">
+            <?php foreach ($comments as $d){?>
+                <section id="boxes">
+                    <div class="box">
+                        <h4><?php echo $d['Email'] ?>  Says :</h4>
+                        <h4><?php echo $d['Comment'] ?> </h4>
 
-    }
+                    </div>
+                </section>
 
-    public function Comments(){
-        ?>
-        <div id="CommentDiv">
-            <section id="Comments">
-                <div class="Comment">
-                    <h1>Hello</h1>
-                </div>
-            </section>
-            <section id="Comments">
-                <div class="Comment">
-                    <h1>Hello</h1>
-                </div>
-            </section>
-            <section id="Comments">
-                <div class="Comment">
-                    <h1>Hello</h1>
-                </div>
-            </section>
+            <?php  }?>
+
         </div>
-
-
         <?php
         $this->Footer();
+
     }
 
     private function Footer(){

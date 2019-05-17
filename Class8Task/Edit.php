@@ -1,8 +1,8 @@
 <?php
 include "MyForm.php";
-include "Connection.php";
-include "MobileService.php";
-include "Mobile.php";
+include "Infrastructure/Connection.php";
+include "Service/MobileService.php";
+include "Entities/Mobile.php";
 
 $form=new MyForm();
 $conn= new Connection();
@@ -33,5 +33,5 @@ if(isset($_POST['Update'])){
     }
 
     $mobileService->UpdateRow($mobile);
-    header("Location: List.php");
+    echo '<script>window.location="List.php"</script>';
 }

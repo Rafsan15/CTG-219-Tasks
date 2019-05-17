@@ -162,11 +162,13 @@ input[type="file"] {
 .box form input[type="submit"]{
     margin-left: 50px;
 }
+
 .box .ImgBtn{
     background: transparent;
     border: 0px;
 
 }
+
 .TableBtn{
     height: 30px;
     background: #e8491d;
@@ -208,16 +210,19 @@ aside#ImageSection{
     width: 30%;
     margin-top: 5px;
 }
+
 aside#ImageSection img{
     width: 400px;
     height: 300px;
 }
+
 article#Info{
     float: right;
     width: 60%;
     background-color: antiquewhite;
 
 }
+
 aside#Ratings{
     float: right;
     width: 30%;
@@ -225,10 +230,12 @@ aside#Ratings{
     margin-top: 30px;
     margin-right: 30px;
 }
+
 aside#detInfo{
     float: left;
     width: 50%;
 }
+
 article#Info .DetailsBtn{
     height: 30px;
     background: #e8491d;
@@ -242,6 +249,7 @@ article#Info .DetailsBtn{
 
 
 }
+
 article#Info .DetailsBtn2{
     height: 30px;
     background: #e8491d;
@@ -255,6 +263,7 @@ article#Info .DetailsBtn2{
 
 
 }
+
 article#Info label{
     font-size: 25px;
     margin-top: 5px;
@@ -279,10 +288,11 @@ article#Info label{
     padding: 50px;
 
 }
+
 footer{
     padding: 10px;
     margin-top: 5px;
     color: #ffffff;
-    background-color: #35424a;
+    background-color: darkcyan;
     text-align: center;
 }
